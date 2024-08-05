@@ -3,11 +3,79 @@
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
-			"sources": [],
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ADLS_TSV_AdventureWorks",
+						"type": "DatasetReference"
+					},
+					"name": "Product"
+				},
+				{
+					"dataset": {
+						"referenceName": "ADLS_TSV_AdventureWorks",
+						"type": "DatasetReference"
+					},
+					"name": "ProductSubCategory"
+				},
+				{
+					"dataset": {
+						"referenceName": "ADLS_TSV_AdventureWorks",
+						"type": "DatasetReference"
+					},
+					"name": "ProductCategory"
+				}
+			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "selectProduct"
+				}
+			],
 			"scriptLines": [
-				""
+				"source(output(",
+				"          ProductId as integer,",
+				"          Product as string,",
+				"          {_col2_} as string,",
+				"          {_col3_} as boolean,",
+				"          {_col4_} as boolean,",
+				"          {_col5_} as string,",
+				"          {_col6_} as short,",
+				"          {_col7_} as short,",
+				"          {_col8_} as double,",
+				"          {_col9_} as double,",
+				"          {_col10_} as string,",
+				"          {_col11_} as string,",
+				"          {_col12_} as string,",
+				"          {_col13_} as double,",
+				"          {_col14_} as short,",
+				"          {_col15_} as string,",
+				"          {_col16_} as string,",
+				"          {_col17_} as string,",
+				"          Subcategory as integer,",
+				"          {_col19_} as short,",
+				"          {_col20_} as timestamp,",
+				"          {_col21_} as timestamp,",
+				"          {_col22_} as string,",
+				"          {_col23_} as string,",
+				"          {_col24_} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Product",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> ProductSubCategory",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> ProductCategory",
+				"Product select(mapColumn(",
+				"          ProductId,",
+				"          Product,",
+				"          Subcategory",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> selectProduct"
 			]
 		}
 	}
