@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "CopyAWEntities",
+				"name": "Copy each AW entity",
 				"type": "ForEach",
 				"dependsOn": [],
 				"userProperties": [],
