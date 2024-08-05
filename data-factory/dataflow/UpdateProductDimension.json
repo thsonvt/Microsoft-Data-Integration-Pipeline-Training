@@ -32,7 +32,7 @@
 					"name": "selectProduct"
 				},
 				{
-					"name": "select1"
+					"name": "selectProductSubcategory"
 				}
 			],
 			"scriptLines": [
@@ -86,8 +86,13 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> selectProduct",
-				"ProductSubCategory select(skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select1"
+				"ProductSubCategory select(mapColumn(",
+				"          SubcategoryId,",
+				"          CategoryId,",
+				"          Subcategory",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> selectProductSubcategory"
 			]
 		}
 	}
