@@ -15,7 +15,10 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "Product.csv",
+				"fileName": {
+					"value": "@{dataset().Entity}.tsv",
+					"type": "Expression"
+				},
 				"folderPath": "Raw",
 				"fileSystem": "lakeroot"
 			}
