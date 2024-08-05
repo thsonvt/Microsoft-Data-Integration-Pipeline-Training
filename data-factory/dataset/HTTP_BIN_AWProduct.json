@@ -1,0 +1,16 @@
+{
+	"name": "HTTP_BIN_AWProduct",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HTTP_GithubAWProduct",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation"
+			}
+		}
+	}
+}
