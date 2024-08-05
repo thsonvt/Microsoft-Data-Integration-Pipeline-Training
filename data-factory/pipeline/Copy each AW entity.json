@@ -1,5 +1,5 @@
 {
-	"name": "CopyAWEntities",
+	"name": "Copy each AW entity",
 	"properties": {
 		"activities": [
 			{
