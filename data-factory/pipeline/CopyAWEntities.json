@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "ForEach1",
+				"name": "CopyAWEntities",
 				"type": "ForEach",
 				"dependsOn": [],
 				"userProperties": [],
@@ -12,6 +12,7 @@
 						"value": "@variables('Entities')",
 						"type": "Expression"
 					},
+					"isSequential": false,
 					"activities": [
 						{
 							"name": "CopyAWEntity",
