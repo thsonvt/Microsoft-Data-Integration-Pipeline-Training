@@ -14,7 +14,11 @@
 		"type": "Binary",
 		"typeProperties": {
 			"location": {
-				"type": "HttpServerLocation"
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "@{dataset().Entity}.csv",
+					"type": "Expression"
+				}
 			}
 		}
 	}
