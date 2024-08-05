@@ -1,0 +1,9 @@
+{
+	"name": "azuresonle-adf",
+	"location": "southeastasia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "88c7d74b-a150-4020-b084-7501f1f81d61",
+		"tenantId": "812b1e72-2671-4a1e-bc3f-0519db4e3723"
+	}
+}
