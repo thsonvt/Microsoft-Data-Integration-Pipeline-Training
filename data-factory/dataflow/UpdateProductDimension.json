@@ -30,6 +30,9 @@
 			"transformations": [
 				{
 					"name": "selectProduct"
+				},
+				{
+					"name": "select1"
 				}
 			],
 			"scriptLines": [
@@ -63,7 +66,14 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> Product",
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          SubcategoryId as integer,",
+				"          CategoryId as integer,",
+				"          Subcategory as string,",
+				"          {_col3_} as string,",
+				"          {_col4_} as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> ProductSubCategory",
 				"source(allowSchemaDrift: true,",
@@ -75,7 +85,9 @@
 				"          Subcategory",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> selectProduct"
+				"     skipDuplicateMapOutputs: true) ~> selectProduct",
+				"ProductSubCategory select(skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1"
 			]
 		}
 	}
