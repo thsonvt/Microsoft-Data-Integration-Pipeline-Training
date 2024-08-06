@@ -42,6 +42,9 @@
 				},
 				{
 					"name": "lookupProductSubcategory"
+				},
+				{
+					"name": "excludeDuplicateColumns"
 				}
 			],
 			"scriptLines": [
@@ -121,7 +124,17 @@
 				"selectProduct, lookupProductCategory lookup(selectProduct@SubcategoryId == selectProductSubcategory@SubcategoryId,",
 				"     multiple: false,",
 				"     pickup: 'any',",
-				"     broadcast: 'auto')~> lookupProductSubcategory"
+				"     broadcast: 'auto')~> lookupProductSubcategory",
+				"lookupProductSubcategory select(mapColumn(",
+				"          ProductId,",
+				"          Product,",
+				"          SubcategoryId = selectProduct@SubcategoryId,",
+				"          CategoryId = selectProductSubcategory@CategoryId,",
+				"          Subcategory,",
+				"          Category",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> excludeDuplicateColumns"
 			]
 		}
 	}
