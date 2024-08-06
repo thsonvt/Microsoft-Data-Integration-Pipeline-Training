@@ -9,13 +9,14 @@
 						"referenceName": "AzureDataLakeStorage1",
 						"type": "LinkedServiceReference"
 					},
-					"name": "source1"
+					"name": "dimProduct"
 				}
 			],
 			"sinks": [],
 			"transformations": [
 				{
-					"name": "orderBySubcategory"
+					"name": "orderBySubcategory",
+					"description": "sorting rows on columns 'Subcategory'"
 				}
 			],
 			"scriptLines": [
@@ -24,8 +25,8 @@
 				"     ignoreNoFilesFound: false,",
 				"     format: 'delta',",
 				"     fileSystem: 'lakeroot',",
-				"     folderPath: 'Conformed/DimProduct') ~> source1",
-				"source1 sort(asc(ERROR_FUNCTION(''), true)) ~> orderBySubcategory"
+				"     folderPath: 'Conformed/DimProduct') ~> dimProduct",
+				"dimProduct sort(asc(ERROR_FUNCTION(''), true)) ~> orderBySubcategory"
 			]
 		}
 	}
