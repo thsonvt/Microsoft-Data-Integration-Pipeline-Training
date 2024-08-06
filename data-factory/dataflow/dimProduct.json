@@ -20,13 +20,21 @@
 				}
 			],
 			"scriptLines": [
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          ProductId as integer,",
+				"          Product as string,",
+				"          SubcategoryId as integer,",
+				"          CategoryId as integer,",
+				"          Subcategory as string,",
+				"          Category as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     format: 'delta',",
 				"     fileSystem: 'lakeroot',",
 				"     folderPath: 'Conformed/DimProduct') ~> dimProduct",
-				"dimProduct sort(asc(ERROR_FUNCTION(''), true)) ~> orderBySubcategory"
+				"dimProduct sort(asc(Subcategory, false)) ~> orderBySubcategory"
 			]
 		}
 	}
