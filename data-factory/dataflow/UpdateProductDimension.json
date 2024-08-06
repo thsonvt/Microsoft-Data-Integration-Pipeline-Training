@@ -118,7 +118,7 @@
 				"     multiple: false,",
 				"     pickup: 'any',",
 				"     broadcast: 'auto')~> lookupProductCategory",
-				"selectProduct, lookupProductCategory lookup(selectProduct@Subcategory == selectProductSubcategory@Subcategory,",
+				"selectProduct, lookupProductCategory lookup(selectProduct@SubcategoryId == selectProductSubcategory@SubcategoryId,",
 				"     multiple: false,",
 				"     pickup: 'any',",
 				"     broadcast: 'auto')~> lookupProductSubcategory"
