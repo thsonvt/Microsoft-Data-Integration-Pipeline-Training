@@ -12,7 +12,15 @@
 					"name": "dimProduct"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "AzureDataLakeStorage1",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sinkDimProductHavingSubscategory"
+				}
+			],
 			"transformations": [
 				{
 					"name": "orderBySubcategory",
@@ -34,7 +42,23 @@
 				"     format: 'delta',",
 				"     fileSystem: 'lakeroot',",
 				"     folderPath: 'Conformed/DimProduct') ~> dimProduct",
-				"dimProduct sort(asc(Subcategory, false)) ~> orderBySubcategory"
+				"dimProduct sort(asc(Subcategory, false)) ~> orderBySubcategory",
+				"orderBySubcategory sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'delta',",
+				"     mergeSchema: false,",
+				"     autoCompact: false,",
+				"     optimizedWrite: false,",
+				"     vacuum: 0,",
+				"     deletable: false,",
+				"     insertable: true,",
+				"     updateable: false,",
+				"     upsertable: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sinkDimProductHavingSubscategory"
 			]
 		}
 	}
