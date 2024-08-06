@@ -1,5 +1,5 @@
 {
-	"name": "dataflow1",
+	"name": "dimProduct",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
@@ -13,14 +13,19 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "orderBySubcategory"
+				}
+			],
 			"scriptLines": [
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     format: 'delta',",
 				"     fileSystem: 'lakeroot',",
-				"     folderPath: 'Conformed/DimProduct') ~> source1"
+				"     folderPath: 'Conformed/DimProduct') ~> source1",
+				"source1 sort(asc(ERROR_FUNCTION(''), true)) ~> orderBySubcategory"
 			]
 		}
 	}
