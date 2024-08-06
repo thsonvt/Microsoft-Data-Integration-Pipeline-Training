@@ -18,7 +18,9 @@
 				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
-				"     format: 'delta') ~> source1"
+				"     format: 'delta',",
+				"     fileSystem: 'lakeroot',",
+				"     folderPath: 'Conformed/DimProduct') ~> source1"
 			]
 		}
 	}
