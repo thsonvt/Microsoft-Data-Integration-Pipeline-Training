@@ -46,6 +46,8 @@
 				"orderBySubcategory sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'delta',",
+				"     fileSystem: 'lakeroot',",
+				"     folderPath: 'Conformed/DimProduct',",
 				"     mergeSchema: false,",
 				"     autoCompact: false,",
 				"     optimizedWrite: false,",
