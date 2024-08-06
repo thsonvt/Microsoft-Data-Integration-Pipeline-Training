@@ -36,6 +36,12 @@
 				},
 				{
 					"name": "selectProductCategory"
+				},
+				{
+					"name": "lookupProductCategory"
+				},
+				{
+					"name": "lookupProductSubcategory"
 				}
 			],
 			"scriptLines": [
@@ -107,7 +113,15 @@
 				"          Category",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> selectProductCategory"
+				"     skipDuplicateMapOutputs: true) ~> selectProductCategory",
+				"selectProductSubcategory, selectProductCategory lookup(selectProductSubcategory@CategoryId == selectProductCategory@CategoryId,",
+				"     multiple: false,",
+				"     pickup: 'any',",
+				"     broadcast: 'auto')~> lookupProductCategory",
+				"selectProduct, lookupProductCategory lookup(selectProduct@Subcategory == selectProductSubcategory@Subcategory,",
+				"     multiple: false,",
+				"     pickup: 'any',",
+				"     broadcast: 'auto')~> lookupProductSubcategory"
 			]
 		}
 	}
